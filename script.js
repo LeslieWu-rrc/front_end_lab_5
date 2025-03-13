@@ -59,7 +59,17 @@ async function displayCatFacts() {
       factsContainer.appendChild(factPara);
     });
   } catch (error) {
-    console.error(error);
+    console.error(`network errors`, error);
     factsContainer.innerHTML = "<p>An error occurred while loading data. Please try again later.</p>";
   }
 }
+
+const samuraiPizzaCats = {
+  leader: "Speedy Cerviche",
+  members: 3,
+  base: {
+    location: "Little Tokyo",
+    name: "Pizza Cat Restaurant",
+  },
+  catchphrase: "It's cheese time!",
+};
