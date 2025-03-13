@@ -36,3 +36,30 @@ function getSelectedFactCount() {
   return parseInt(selectElement.value, 10);
 }
 
+async function displayCatFacts() {
+  const factsContainer = document.querySelector("#factsContainer");
+  // remove content
+  factsContainer.innerHTML = "";
+
+  // Get the number of items selected by the user
+  const factCount = getSelectedFactCount();
+
+  try {
+    const response = await fetch(`https://catfact.ninja/facts?limit=${factCount}`);
+    if (!response.ok) {
+      throw new Error(`Failed ${response.status}`);
+    }
+    const data = await response.json();
+    const facts = data.data; // According to the API return structure, assume that cat trivia is stored in the data attribute
+
+    // loop the facts and add it to the page
+    facts.forEach(factObj => {
+      const factPara = document.createElement("p");
+      factPara.textContent = factObj.fact;
+      factsContainer.appendChild(factPara);
+    });
+  } catch (error) {
+    console.error(error);
+    factsContainer.innerHTML = "<p>An error occurred while loading data. Please try again later.</p>";
+  }
+}
