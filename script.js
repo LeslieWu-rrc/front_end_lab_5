@@ -12,3 +12,20 @@ simulateAsyncOperation()
   .catch(error => console.error(error));
 
 console.log("This line of code will be called first, will not be blocked by the async.");
+
+// Fetch Cat Breeds
+async function fetchCatBreeds() {
+  try {
+    const response = await fetch("https://catfact.ninja/breeds");
+    if (!response.ok) {
+      throw new Error(`Failed HTTP ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("fetchCatBreeds failed", error);
+  }
+}
+
+// Call the function and log the output
+fetchCatBreeds().then(data => console.log(data));
