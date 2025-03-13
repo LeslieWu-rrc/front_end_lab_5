@@ -29,3 +29,10 @@ async function fetchCatBreeds() {
 
 // Call the function and log the output
 fetchCatBreeds().then(data => console.log(data));
+
+// Set up a JavaScript function to get the selected value from the dropdown.
+function getSelectedFactCount() {
+  const selectElement = document.querySelector("#factCount");
+  return parseInt(selectElement.value, 10);
+}
+
